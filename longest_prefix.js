@@ -1,7 +1,5 @@
 var longestCommonPrefix = function (strs) {
 
-    if (strs.length === 1) return strs[0]
-
     let prefixIndex = -1
 
     strs.sort((a, b) => {
@@ -42,5 +40,5 @@ var longestCommonPrefix = function (strs) {
     return strs[0].slice(0, prefixIndex + 1)
 };
 
-strs = ["ab", "a"]
+strs = ["a"]
 console.log(longestCommonPrefix(strs))
