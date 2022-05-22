@@ -1,26 +1,55 @@
-var removeElement = function (nums, val) {
-    let totalDuplicate = 0
-    let endTail = nums.length - 1
-    let lengthArr = nums.length
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
 
-    for (let i = 0; i < nums.length; i++) {
-        if(i > endTail) break
-        
-        if (nums[i] === val) {
-            nums[i] = nums[endTail]
-            endTail = endTail - 1
-            totalDuplicate = totalDuplicate + 1
-        }
-        if (nums[i] === val) {
-            i = i - 1
+    if(!head) return null; 
+    if(!head.next) return head; 
+
+    var mainHead = head;
+
+    while (head.next.next != null) {
+        if (head.val === head.next.val) {
+            head.next = head.next.next
+            head = head
+        } else {
+            head = head.next
         }
     }
 
-    var result = lengthArr - totalDuplicate
+    // Last Check
+    if (head.val === head.next.val) {
+        head.next = null
+    }
 
-    return result
+    return mainHead
 };
 
-nums = [2,2]
-val = 2
-removeElement(nums, val)
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+
+function printNode(head) {
+    while (head != null) {
+        console.log(head.val)
+        head = head.next
+    }
+}
+
+const head = new ListNode(1)
+head.next = new ListNode(1)
+head.next.next = new ListNode(2)
+// head.next.next.next = new ListNode(3)
+// head.next.next.next.next = new ListNode(3)
+
+const newHead = deleteDuplicates(head)
+printNode(newHead)
