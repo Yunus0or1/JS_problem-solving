@@ -6,16 +6,31 @@ function TreeNode(val, left, right) {
 }
 
 var inorderTraversal = function (root) {
-    while(root != null){
-        console.log(root.val)
-        inorderTraversal(root.left)
-        inorderTraversal(root.right)
+
+    if(root === null) {
+        return
     }
+
+    const nodeList = []
+
+    const inorderTraversalTree = (rootTree, nodeList) => {
+        if (rootTree === null) {
+            return
+        }
+
+        inorderTraversalTree(rootTree.left, nodeList)
+        nodeList.push(rootTree.val)
+        inorderTraversalTree(rootTree.right, nodeList)
+
+    }
+
+    inorderTraversalTree(root, nodeList)
+
+    return nodeList
 };
 
-
 let root = new TreeNode(1)
-let left = new TreeNode(2)
-root.left = left
+
+
 
 console.log(inorderTraversal(root))
