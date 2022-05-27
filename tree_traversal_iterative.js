@@ -5,12 +5,18 @@ function TreeNode(val, left, right) {
     this.right = (right === undefined ? null : right)
 }
 
-var isSymmetric = function (root) {
-    if (root === null) return true
-    else if (p === null || q === null) return false
-    else if (p.val != q.val) return false
+var treeTraversalIterative = function (root) {
+    const treeStack = [root]
 
-    return isSymmetric(root.left, root.right,) && isSymmetric(p.right, q.right, 'right')
+    // Pre Order Iterative
+    while(treeStack.length != 0){
+        const node = treeStack.pop()
+        if(node != null){
+            console.log(node.val)
+            treeStack.push(node.right)
+            treeStack.push(node.left)
+        }
+    }
 };
 
 // Test Case - 1
@@ -33,10 +39,10 @@ var isSymmetric = function (root) {
 
 let root = new TreeNode(1)
 root.left = new TreeNode(2)
-root.left.left = new TreeNode(2)
+root.left.left = new TreeNode(3)
+root.left.right = new TreeNode(9)
 
-root.right = new TreeNode(2)
-root.right.left = new TreeNode(2)
+root.right = new TreeNode(4)
+root.right.left = new TreeNode(5)
 
-
-console.log(isSymmetric(root))
+treeTraversalIterative(root)
