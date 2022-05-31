@@ -3,7 +3,6 @@ var containsNearbyDuplicate = function (nums, k) {
 
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] in numSet && Math.abs(numSet[nums[i]] - i) <= k) {
-            console.log(numSet)
             return true
         } else {
             numSet[nums[i]] = i
@@ -13,5 +12,5 @@ var containsNearbyDuplicate = function (nums, k) {
     return false
 };
 
-nums = [1,0,1,1], k = 1
+nums = [1,2,3,4,1,1], k = 2
 console.log(containsNearbyDuplicate(nums, k))
