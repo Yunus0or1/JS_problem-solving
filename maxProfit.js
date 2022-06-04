@@ -1,13 +1,17 @@
 var maxProfit = function (prices) {
   let maxProf = 0
+  let buy = prices[0]
 
-  for (let i = 0 ; i < prices.length; i++){
-    for(let j = i; j < prices.length; j++){
-      const profit = prices[j] - prices[i]
+  for (let i = 1; i < prices.length; i++) {
+    let sell = prices[i]
 
-      if(profit >= maxProf){
-        maxProf = profit
-      }
+    let profit = sell - buy
+    if (profit > maxProf) {
+      maxProf = profit
+    }
+
+    if (buy > sell) {
+      buy = sell
     }
   }
 
@@ -16,5 +20,5 @@ var maxProfit = function (prices) {
 };
 
 
-prices = [7,6,4,3,1]
+prices = [7, 1, 5, 3, 6, 4]
 console.log(maxProfit(prices))
